@@ -3,41 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Música</title>
+    <title>HYmusic</title>
 
     <style>
         body {
-            margin: 0;
             background: #111;
             color: white;
             font-family: Arial, sans-serif;
-        }
-
-        header {
-            padding: 30px;
             text-align: center;
-            background: #181818;
-        }
-
-        h1 {
-            margin: 0;
-        }
-
-        .musica {
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 20px;
+            padding: 40px;
         }
 
         .cancion {
-            background: #1e1e1e;
+            background: #222;
+            max-width: 500px;
+            margin: 20px auto;
             padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 12px;
-        }
-
-        .cancion h2 {
-            margin-top: 0;
+            border-radius: 15px;
         }
 
         audio {
@@ -48,28 +30,17 @@
 
 <body>
 
-<header>
-    <h1>🎵 Mi Música</h1>
+    <h1>🎵 HYmusic</h1>
     <p>Mis canciones</p>
-</header>
-
-<div class="musica">
 
     <div class="cancion">
-        <h2>Canción 1</h2>
+        <h2>🎧 Musica 1</h2>
+
         <audio controls>
-            <source src="musica/cancion1.mp3" type="audio/mpeg">
+            <source src="musica1.mp3" type="audio/mpeg">
+            Tu navegador no puede reproducir este audio.
         </audio>
     </div>
-
-    <div class="cancion">
-        <h2>Canción 2</h2>
-        <audio controls>
-            <source src="musica/cancion2.mp3" type="audio/mpeg">
-        </audio>
-    </div>
-
-</div>
 
 </body>
 </html>
