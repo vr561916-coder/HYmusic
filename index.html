@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Música</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            padding: 30px;
+            text-align: center;
+            background: #181818;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .musica {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .cancion {
+            background: #1e1e1e;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+        }
+
+        .cancion h2 {
+            margin-top: 0;
+        }
+
+        audio {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🎵 Mi Música</h1>
+    <p>Mis canciones</p>
+</header>
+
+<div class="musica">
+
+    <div class="cancion">
+        <h2>Canción 1</h2>
+        <audio controls>
+            <source src="musica/cancion1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div class="cancion">
+        <h2>Canción 2</h2>
+        <audio controls>
+            <source src="musica/cancion2.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+</div>
+
+</body>
+</html>
