@@ -5,13 +5,12 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>HYmusic Peru2026</title>
 
     <meta name="description"
-        content="HYmusic Peru2026 - Biblioteca musical online">
+          content="HYmusic Peru2026 - Biblioteca musical online">
 
     <style>
 
@@ -284,6 +283,8 @@
 
             margin-bottom: 25px;
 
+            font-size: 14px;
+
         }
 
 
@@ -392,7 +393,9 @@
         }
 
 
-        /* BOTON PLAY */
+        /* =========================
+           BOTON PLAY
+        ========================= */
 
         .play {
 
@@ -425,7 +428,7 @@
 
 
         /* =========================
-           RESULTADOS BUSCADOR
+           RESULTADOS BUSQUEDA
         ========================= */
 
         #resultadosBusqueda {
@@ -627,11 +630,12 @@
 </header>
 
 
+
 <div class="contenedor">
 
 
     <!-- =========================
-         INICIO
+         MENU PRINCIPAL
     ========================= -->
 
     <div id="inicio">
@@ -728,7 +732,7 @@
             class="volver"
             onclick="volverInicio()">
 
-            ← Volver
+            ← Volver al inicio
 
         </button>
 
@@ -750,13 +754,25 @@
 
 
     <!-- =========================
-         RESULTADOS BUSQUEDA
+         RESULTADOS DE BUSQUEDA
     ========================= -->
 
     <div id="resultadosBusqueda">
 
+
+        <button
+            class="volver"
+            onclick="volverInicio()">
+
+            ← Volver al inicio
+
+        </button>
+
+
         <h2 class="titulo-busqueda">
+
             Resultados de búsqueda
+
         </h2>
 
 
@@ -772,6 +788,7 @@
             😕 No se encontraron canciones.
 
         </div>
+
 
     </div>
 
@@ -826,7 +843,7 @@
 
 
 /* =========================
-   BIBLIOTECA
+   BIBLIOTECA MUSICAL
 ========================= */
 
 const canciones = [
@@ -892,17 +909,20 @@ function abrirGenero(genero) {
 
     }
 
+
     if (genero === "CUMBIA") {
 
         titulo = "🪕 CUMBIA";
 
     }
 
+
     if (genero === "POP") {
 
         titulo = "🎤 POP";
 
     }
+
 
     if (genero === "REGGAETON") {
 
@@ -930,7 +950,9 @@ function mostrarCanciones(genero) {
 
 
     const lista =
-        document.getElementById("listaCanciones");
+        document.getElementById(
+            "listaCanciones"
+        );
 
 
     lista.innerHTML = "";
@@ -957,24 +979,36 @@ function mostrarCanciones(genero) {
         elemento.innerHTML = `
 
             <div class="numero">
+
                 ${indice + 1}
+
             </div>
 
+
             <div class="icono-cancion">
+
                 ${cancion.icono}
+
             </div>
+
 
             <div class="informacion">
 
                 <div class="nombre">
+
                     ${cancion.titulo}
+
                 </div>
 
+
                 <div class="artista">
+
                     ${cancion.artista}
+
                 </div>
 
             </div>
+
 
             <button
                 class="play"
@@ -1000,7 +1034,7 @@ function mostrarCanciones(genero) {
 
 
 /* =========================
-   VOLVER
+   VOLVER AL INICIO
 ========================= */
 
 function volverInicio() {
@@ -1030,7 +1064,7 @@ function volverInicio() {
 
 
 /* =========================
-   REPRODUCIR
+   REPRODUCIR CANCION
 ========================= */
 
 function reproducirCancion(
@@ -1041,28 +1075,62 @@ function reproducirCancion(
 
 
     const player =
-        document.getElementById("player");
+        document.getElementById(
+            "player"
+        );
 
 
     player.src = archivo;
 
 
     document
-        .getElementById("playerTitle")
+        .getElementById(
+            "playerTitle"
+        )
         .textContent = titulo;
 
 
     document
-        .getElementById("playerArtist")
+        .getElementById(
+            "playerArtist"
+        )
         .textContent = artista;
 
 
     document
-        .getElementById("playerBox")
+        .getElementById(
+            "playerBox"
+        )
         .style.display = "flex";
 
 
     player.play();
+
+}
+
+
+
+/* =========================
+   NORMALIZAR TEXTO
+========================= */
+
+function normalizar(texto) {
+
+    return texto
+
+        .toLowerCase()
+
+        .normalize("NFD")
+
+        .replace(
+            /[\u0300-\u036f]/g,
+            ""
+        )
+
+        .replace(
+            /[\s\-_]/g,
+            ""
+        );
 
 }
 
@@ -1081,38 +1149,41 @@ document
 
 
 
-function normalizar(texto) {
-
-    return texto
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[\s\-_]/g, "");
-
-}
-
-
-
 function buscarCanciones() {
 
 
     const texto =
         document
-        .getElementById("busqueda")
+        .getElementById(
+            "busqueda"
+        )
         .value
         .trim();
 
+
+    /* SI EL BUSCADOR ESTA VACIO */
 
     if (texto === "") {
 
 
         document
-            .getElementById("resultadosBusqueda")
+            .getElementById(
+                "resultadosBusqueda"
+            )
             .style.display = "none";
 
 
         document
-            .getElementById("inicio")
+            .getElementById(
+                "vistaCanciones"
+            )
+            .style.display = "none";
+
+
+        document
+            .getElementById(
+                "inicio"
+            )
             .style.display = "block";
 
 
@@ -1121,18 +1192,26 @@ function buscarCanciones() {
     }
 
 
+    /* MOSTRAR RESULTADOS */
+
     document
-        .getElementById("inicio")
+        .getElementById(
+            "inicio"
+        )
         .style.display = "none";
 
 
     document
-        .getElementById("vistaCanciones")
+        .getElementById(
+            "vistaCanciones"
+        )
         .style.display = "none";
 
 
     document
-        .getElementById("resultadosBusqueda")
+        .getElementById(
+            "resultadosBusqueda"
+        )
         .style.display = "block";
 
 
@@ -1146,9 +1225,13 @@ function buscarCanciones() {
 
             const datos =
                 normalizar(
+
                     cancion.titulo +
+
                     cancion.artista +
+
                     cancion.genero
+
                 );
 
 
@@ -1168,37 +1251,55 @@ function buscarCanciones() {
     lista.innerHTML = "";
 
 
-    resultados.forEach(function(cancion, indice) {
+    resultados.forEach(function(
+        cancion,
+        indice
+    ) {
 
 
         const elemento =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
-        elemento.className = "cancion";
+        elemento.className =
+            "cancion";
 
 
         elemento.innerHTML = `
 
             <div class="numero">
+
                 ${indice + 1}
+
             </div>
 
+
             <div class="icono-cancion">
+
                 ${cancion.icono}
+
             </div>
+
 
             <div class="informacion">
 
                 <div class="nombre">
+
                     ${cancion.titulo}
+
                 </div>
 
+
                 <div class="artista">
+
                     ${cancion.artista}
+
                 </div>
 
             </div>
+
 
             <button
                 class="play"
@@ -1221,14 +1322,18 @@ function buscarCanciones() {
 
 
     document
-        .getElementById("sinResultados")
+        .getElementById(
+            "sinResultados"
+        )
         .style.display =
+
         resultados.length === 0
+
         ? "block"
+
         : "none";
 
 }
-
 
 </script>
 
