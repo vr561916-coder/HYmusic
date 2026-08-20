@@ -1,155 +1,736 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta name="msvalidate.01" content="424E94A3319A011D09BAB3137C3E9FCF">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>HYmusic Peru2026 - Música online</title>
+    <title>HYmusic Peru2026 - Biblioteca Musical</title>
 
-    <meta name="description" content="HYmusic Peru2026 - Reproductor de música online.">
+    <meta name="description" content="HYmusic Peru2026 - Biblioteca musical online">
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            background: #111;
+            margin: 0;
+            background: #121212;
             color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 40px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* BARRA SUPERIOR */
+
+        header {
+            background: #000;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1ed760;
+        }
+
+        /* CONTENIDO */
+
+        .contenedor {
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 25px 100px;
         }
 
         h1 {
-            font-size: 40px;
+            font-size: 36px;
+            margin-bottom: 25px;
         }
+
+        /* BUSCADOR */
+
+        .buscador {
+            margin-bottom: 30px;
+        }
+
+        .buscador input {
+            width: 100%;
+            max-width: 650px;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 30px;
+            background: #242424;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .buscador input:focus {
+            background: #333;
+        }
+
+        /* BOTONES DE GENERO */
+
+        .generos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .genero {
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            background: #282828;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .genero:hover {
+            background: #3a3a3a;
+        }
+
+        .genero.activo {
+            background: #1ed760;
+            color: black;
+            font-weight: bold;
+        }
+
+        /* TITULO DEL GENERO */
+
+        .titulo-genero {
+            font-size: 25px;
+            margin: 35px 0 15px;
+        }
+
+        /* CANCIONES */
 
         .cancion {
-            background: #222;
-            max-width: 500px;
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            transition: background 0.2s;
         }
 
-        .cancion h2 {
-            margin-top: 0;
+        .cancion:hover {
+            background: #282828;
+        }
+
+        .numero {
+            width: 40px;
+            color: #888;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .icono {
+            width: 48px;
+            height: 48px;
+            background: #282828;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-right: 15px;
+        }
+
+        .informacion {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .nombre {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .artista {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .reproductor {
+            width: 320px;
+            margin-left: 15px;
         }
 
         audio {
             width: 100%;
         }
+
+        /* SIN RESULTADOS */
+
+        .sin-resultados {
+            display: none;
+            text-align: center;
+            color: #888;
+            padding: 50px;
+            font-size: 18px;
+        }
+
+        /* REPRODUCTOR INFERIOR */
+
+        .player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: #181818;
+            border-top: 1px solid #333;
+            display: flex;
+            align-items: center;
+            padding: 10px 25px;
+            z-index: 200;
+        }
+
+        .player-info {
+            width: 250px;
+            min-width: 150px;
+        }
+
+        .player-title {
+            font-weight: bold;
+        }
+
+        .player-artist {
+            color: #999;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .player-audio {
+            flex: 1;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        /* CELULAR */
+
+        @media (max-width: 750px) {
+
+            header {
+                padding: 18px;
+            }
+
+            .contenedor {
+                padding: 25px 15px 120px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .cancion {
+                flex-wrap: wrap;
+            }
+
+            .numero {
+                display: none;
+            }
+
+            .icono {
+                width: 45px;
+                height: 45px;
+            }
+
+            .informacion {
+                width: calc(100% - 60px);
+                flex: none;
+            }
+
+            .reproductor {
+                width: 100%;
+                margin: 10px 0 0;
+            }
+
+            .player {
+                height: 95px;
+                padding: 10px 15px;
+                flex-wrap: wrap;
+            }
+
+            .player-info {
+                width: 100%;
+                height: 35px;
+            }
+
+            .player-audio {
+                width: 100%;
+                max-width: none;
+            }
+        }
     </style>
 </head>
 
+
 <body>
 
-    <h1>🎵 HYmusic Peru2026</h1>
-    <p>Reproductor de música online</p>
+<header>
 
-    <div class="cancion">
-        <h2>🎧 Musica 1</h2>
-        <audio controls>
-            <source src="musica1.mp3" type="audio/mpeg">
-        </audio>
+    <div class="logo">
+        🎵 HYmusic
     </div>
 
-    <div class="cancion">
-        <h2>🎧 Musica 2</h2>
-        <audio controls>
-            <source src="musica2.mp3" type="audio/mpeg">
-        </audio>
+    <div>
+        Peru2026
     </div>
 
-    <div class="cancion">
-        <h2>🎧 Musica 3</h2>
-        <audio controls>
-            <source src="musica3.mp3" type="audio/mpeg">
-        </audio>
+</header>
+
+
+<div class="contenedor">
+
+    <h1>Tu biblioteca musical</h1>
+
+
+    <!-- BUSCADOR -->
+
+    <div class="buscador">
+
+        <input
+            type="text"
+            id="busqueda"
+            placeholder="🔎 Buscar canción o artista..."
+        >
+
     </div>
 
-    <div class="cancion">
-        <h2>🎧 Musica 4</h2>
-        <audio controls>
-            <source src="musica4.mp3" type="audio/mpeg">
-        </audio>
+
+    <!-- GENEROS -->
+
+    <div class="generos">
+
+        <button
+            class="genero activo"
+            onclick="mostrarGenero('TODOS', this)">
+            Todas
+        </button>
+
+        <button
+            class="genero"
+            onclick="mostrarGenero('ROCK', this)">
+            🎸 Rock
+        </button>
+
+        <button
+            class="genero"
+            onclick="mostrarGenero('CUMBIA', this)">
+            🪕 Cumbia
+        </button>
+
+        <button
+            class="genero"
+            onclick="mostrarGenero('POP', this)">
+            🎤 Pop
+        </button>
+
+        <button
+            class="genero"
+            onclick="mostrarGenero('REGGAETON', this)">
+            🔥 Reggaetón
+        </button>
+
     </div>
 
-    <div class="cancion">
-        <h2>🎧 Musica 5</h2>
-        <audio controls>
-            <source src="musica5.mp3" type="audio/mpeg">
-        </audio>
+
+    <!-- BIBLIOTECA -->
+
+    <div id="biblioteca">
+
+
+        <!-- CUMBIA -->
+
+        <section class="grupo" data-genero="CUMBIA">
+
+            <h2 class="titulo-genero">
+                🪕 Cumbia
+            </h2>
+
+
+            <div
+                class="cancion"
+                data-genero="CUMBIA"
+                data-busqueda="apostemos grupo 5 cumbia"
+            >
+
+                <div class="numero">
+                    1
+                </div>
+
+                <div class="icono">
+                    🪕
+                </div>
+
+                <div class="informacion">
+
+                    <div class="nombre">
+                        Apostemos
+                    </div>
+
+                    <div class="artista">
+                        Grupo 5
+                    </div>
+
+                </div>
+
+                <div class="reproductor">
+
+                    <audio controls
+                        onplay="cambiarPlayer('Apostemos', 'Grupo 5', this)">
+
+                        <source
+                            src="APOSTEMOS-Grupo5(CUMBIA).mp3"
+                            type="audio/mpeg">
+
+                    </audio>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- POP -->
+
+        <section class="grupo" data-genero="POP">
+
+            <h2 class="titulo-genero">
+                🎤 Pop
+            </h2>
+
+
+            <div
+                class="cancion"
+                data-genero="POP"
+                data-busqueda="billie jean michael jackson pop"
+            >
+
+                <div class="numero">
+                    2
+                </div>
+
+                <div class="icono">
+                    🎤
+                </div>
+
+                <div class="informacion">
+
+                    <div class="nombre">
+                        Billie Jean
+                    </div>
+
+                    <div class="artista">
+                        Michael Jackson
+                    </div>
+
+                </div>
+
+                <div class="reproductor">
+
+                    <audio controls
+                        onplay="cambiarPlayer('Billie Jean', 'Michael Jackson', this)">
+
+                        <source
+                            src="BillieJean-MichaelJackson(POP).mp3"
+                            type="audio/mpeg">
+
+                    </audio>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ROCK -->
+
+        <section class="grupo" data-genero="ROCK">
+
+            <h2 class="titulo-genero">
+                🎸 Rock
+            </h2>
+
+
+            <div
+                class="cancion"
+                data-genero="ROCK"
+                data-busqueda="we will rock you queen rock"
+            >
+
+                <div class="numero">
+                    3
+                </div>
+
+                <div class="icono">
+                    🎸
+                </div>
+
+                <div class="informacion">
+
+                    <div class="nombre">
+                        We Will Rock You
+                    </div>
+
+                    <div class="artista">
+                        Queen
+                    </div>
+
+                </div>
+
+                <div class="reproductor">
+
+                    <audio controls
+                        onplay="cambiarPlayer('We Will Rock You', 'Queen', this)">
+
+                        <source
+                            src="WeWillRockYou-Queen(ROCK).mp3"
+                            type="audio/mpeg">
+
+                    </audio>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
     </div>
 
-    <div class="cancion">
-        <h2>🎧 Musica 6</h2>
-        <audio controls>
-            <source src="musica6.mp3" type="audio/mpeg">
-        </audio>
+
+    <div
+        id="sinResultados"
+        class="sin-resultados">
+
+        😕 No se encontraron canciones.
+
     </div>
 
-    <div class="cancion">
-        <h2>🎧 Musica 7</h2>
-        <audio controls>
-            <source src="musica7.mp3" type="audio/mpeg">
-        </audio>
+</div>
+
+
+<!-- REPRODUCTOR INFERIOR -->
+
+<div class="player">
+
+    <div class="player-info">
+
+        <div
+            class="player-title"
+            id="playerTitle">
+
+            Selecciona una canción
+
+        </div>
+
+        <div
+            class="player-artist"
+            id="playerArtist">
+
+            HYmusic Peru2026
+
+        </div>
+
     </div>
 
-    <div class="cancion">
-        <h2>🎧 Musica 8</h2>
-        <audio controls>
-            <source src="musica8.mp3" type="audio/mpeg">
+
+    <div class="player-audio">
+
+        <audio
+            id="player"
+            controls>
+
         </audio>
+
     </div>
 
-    <div class="cancion">
-        <h2>🎧 Musica 9</h2>
-        <audio controls>
-            <source src="musica9.mp3" type="audio/mpeg">
-        </audio>
-    </div>
+</div>
 
-    <div class="cancion">
-        <h2>🎧 Musica 10</h2>
-        <audio controls>
-            <source src="musica10.mp3" type="audio/mpeg">
-        </audio>
-    </div>
 
-    <div class="cancion">
-        <h2>🎧 Musica 11</h2>
-        <audio controls>
-            <source src="musica11.mp3" type="audio/mpeg">
-        </audio>
-    </div>
+<script>
 
-    <div class="cancion">
-        <h2>🎧 Musica 12</h2>
-        <audio controls>
-            <source src="musica12.mp3" type="audio/mpeg">
-        </audio>
-    </div>
+    let generoActual = "TODOS";
 
-    <div class="cancion">
-        <h2>🎧 Musica 13</h2>
-        <audio controls>
-            <source src="musica13.mp3" type="audio/mpeg">
-        </audio>
-    </div>
 
-    <div class="cancion">
-        <h2>🎧 Musica 14</h2>
-        <audio controls>
-            <source src="musica14.mp3" type="audio/mpeg">
-        </audio>
-    </div>
+    /* CAMBIAR GENERO */
 
-    <div class="cancion">
-        <h2>🎧 Musica 15</h2>
-        <audio controls>
-            <source src="musica15.mp3" type="audio/mpeg">
-        </audio>
-    </div>
+    function mostrarGenero(genero, boton) {
+
+        generoActual = genero;
+
+
+        document
+            .querySelectorAll(".genero")
+            .forEach(function(btn) {
+
+                btn.classList.remove("activo");
+
+            });
+
+
+        boton.classList.add("activo");
+
+
+        filtrarCanciones();
+
+    }
+
+
+    /* BUSCADOR */
+
+    document
+        .getElementById("busqueda")
+        .addEventListener("input", function() {
+
+            filtrarCanciones();
+
+        });
+
+
+    /* FILTRAR */
+
+    function filtrarCanciones() {
+
+        const texto =
+            document
+            .getElementById("busqueda")
+            .value
+            .toLowerCase();
+
+
+        const canciones =
+            document
+            .querySelectorAll(".cancion");
+
+
+        const grupos =
+            document
+            .querySelectorAll(".grupo");
+
+
+        let encontrados = 0;
+
+
+        canciones.forEach(function(cancion) {
+
+            const genero =
+                cancion.dataset.genero;
+
+
+            const busqueda =
+                cancion.dataset.busqueda;
+
+
+            const coincideGenero =
+                generoActual === "TODOS" ||
+                genero === generoActual;
+
+
+            const coincideTexto =
+                busqueda.includes(texto);
+
+
+            if (coincideGenero && coincideTexto) {
+
+                cancion.style.display = "flex";
+
+                encontrados++;
+
+            } else {
+
+                cancion.style.display = "none";
+
+            }
+
+        });
+
+
+        /* OCULTAR GENEROS VACIOS */
+
+        grupos.forEach(function(grupo) {
+
+            const visibles =
+                grupo.querySelectorAll(
+                    '.cancion[style="display: flex;"]'
+                ).length;
+
+
+            if (visibles > 0) {
+
+                grupo.style.display = "block";
+
+            } else {
+
+                grupo.style.display = "none";
+
+            }
+
+        });
+
+
+        document
+            .getElementById("sinResultados")
+            .style.display =
+            encontrados === 0
+            ? "block"
+            : "none";
+
+    }
+
+
+    /* REPRODUCTOR PRINCIPAL */
+
+    function cambiarPlayer(titulo, artista, audio) {
+
+        const player =
+            document.getElementById("player");
+
+
+        const fuente =
+            audio.querySelector("source").src;
+
+
+        document
+            .getElementById("playerTitle")
+            .textContent = titulo;
+
+
+        document
+            .getElementById("playerArtist")
+            .textContent = artista;
+
+
+        if (player.src !== fuente) {
+
+            player.src = fuente;
+
+        }
+
+
+        player.currentTime =
+            audio.currentTime;
+
+
+        player.play();
+
+    }
+
+
+</script>
 
 </body>
 </html>
