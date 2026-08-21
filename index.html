@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
@@ -7,135 +8,209 @@
 
 <title>HYmusic Peru2026 - Música online</title>
 
-<meta name="description" content="HYmusic Peru2026 - Biblioteca de música online.">
+<meta name="description"
+content="HYmusic Peru2026 - Biblioteca de música online">
 
 <style>
+
+/* =====================================================
+   CONFIGURACION GENERAL
+===================================================== */
 
 * {
     box-sizing: border-box;
 }
 
 body {
+
     margin: 0;
+
     background: #121212;
+
     color: white;
+
     font-family: Arial, sans-serif;
-    padding-bottom: 120px;
+
+    /* espacio para el reproductor lateral */
+    padding-right: 330px;
+
 }
 
-/* =========================
+
+/* =====================================================
    CABECERA
-========================= */
+===================================================== */
 
 header {
+
     text-align: center;
+
     padding: 35px 20px 20px;
+
 }
 
 header h1 {
+
     font-size: 42px;
+
     margin: 0 0 8px;
+
 }
 
 header p {
+
     color: #999;
+
 }
 
-/* =========================
+
+/* =====================================================
    BUSCADOR
-========================= */
+===================================================== */
 
 .search {
+
     width: 90%;
-    max-width: 600px;
+
+    max-width: 650px;
+
     margin: 25px auto;
+
 }
 
 .search input {
+
     width: 100%;
+
     padding: 16px 22px;
+
     border: none;
+
     border-radius: 30px;
+
     background: #242424;
+
     color: white;
+
     font-size: 16px;
+
     outline: none;
+
 }
 
 .search input:focus {
+
     background: #303030;
+
 }
 
-/* =========================
+
+/* =====================================================
    VISTAS
-========================= */
+===================================================== */
 
 .vista {
+
     display: none;
+
 }
 
 .vista.activa {
+
     display: block;
+
 }
 
-/* =========================
+
+/* =====================================================
    GENEROS
-========================= */
+===================================================== */
 
 .generos {
+
     max-width: 900px;
+
     margin: 30px auto;
+
     padding: 20px;
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+
+    grid-template-columns:
+    repeat(auto-fit, minmax(180px, 1fr));
 
     gap: 20px;
+
 }
 
 .genero {
+
     background: #202020;
+
     border-radius: 18px;
+
     padding: 35px 20px;
+
     text-align: center;
+
     cursor: pointer;
+
     transition: 0.2s;
+
 }
 
 .genero:hover {
+
     background: #303030;
+
     transform: scale(1.03);
+
 }
 
 .icono {
+
     font-size: 45px;
+
 }
 
 .genero h2 {
+
     margin: 12px 0 5px;
+
 }
 
 .genero p {
+
     color: #999;
+
 }
 
-/* =========================
+
+/* =====================================================
    CONTENIDO
-========================= */
+===================================================== */
 
 .contenido {
+
     max-width: 850px;
+
     margin: auto;
+
     padding: 20px;
+
 }
 
-/* =========================
+
+/* =====================================================
    BOTON VOLVER
-========================= */
+===================================================== */
 
 .volver {
+
     background: #292929;
+
     color: white;
+
     border: none;
 
     padding: 12px 20px;
@@ -147,23 +222,32 @@ header p {
     font-size: 15px;
 
     margin-bottom: 20px;
+
 }
 
 .volver:hover {
+
     background: #3a3a3a;
+
 }
 
-/* =========================
-   CANCIONES
-========================= */
+
+/* =====================================================
+   LISTA DE CANCIONES
+===================================================== */
 
 .lista {
+
     display: flex;
+
     flex-direction: column;
+
     gap: 8px;
+
 }
 
 .cancion {
+
     background: #1f1f1f;
 
     padding: 15px 18px;
@@ -173,28 +257,41 @@ header p {
     cursor: pointer;
 
     transition: 0.15s;
+
 }
 
 .cancion:hover {
+
     background: #303030;
+
 }
 
 .cancion.activa {
+
     background: #383838;
+
 }
 
 .titulo {
+
     font-size: 16px;
+
     font-weight: bold;
+
 }
 
 .artista {
+
     color: #999;
+
     font-size: 14px;
+
     margin-top: 5px;
+
 }
 
 .genero-tag {
+
     display: inline-block;
 
     margin-top: 8px;
@@ -208,80 +305,223 @@ header p {
     border-radius: 10px;
 
     color: #bbb;
+
 }
 
 .vacio {
+
     text-align: center;
+
     color: #888;
+
     padding: 40px;
+
 }
 
-/* =========================
-   REPRODUCTOR FIJO
-========================= */
+
+/* =====================================================
+   =====================================================
+   REPRODUCTOR LATERAL
+   =====================================================
+===================================================== */
 
 #reproductor {
 
     position: fixed;
 
-    bottom: 0;
-    left: 0;
+    top: 0;
 
-    width: 100%;
+    right: 0;
+
+    width: 310px;
+
+    height: 100vh;
 
     background: #181818;
 
-    border-top: 1px solid #333;
-
-    padding: 12px 20px;
+    border-left: 1px solid #333;
 
     z-index: 99999;
+
+    padding: 25px 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-end;
+
 }
+
+
+/* =====================================================
+   INFORMACION DE LA CANCION
+===================================================== */
 
 #infoCancion {
 
-    max-width: 900px;
+    margin-bottom: 15px;
 
-    margin: 0 auto 7px;
+    text-align: left;
 
-    font-size: 14px;
+}
+
+.cover {
+
+    width: 100%;
+
+    height: 220px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #333,
+        #111
+    );
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 70px;
+
+    margin-bottom: 20px;
+
 }
 
 .nombre {
+
+    display: block;
+
+    font-size: 18px;
+
     font-weight: bold;
+
+    margin-bottom: 7px;
+
 }
 
 .artistaActual {
+
+    display: block;
+
     color: #999;
+
+    font-size: 14px;
+
 }
+
+
+/* =====================================================
+   AUDIO
+===================================================== */
 
 #audio {
 
     width: 100%;
 
-    max-width: 900px;
-
-    display: block;
-
-    margin: auto;
 }
 
-/* =========================
+
+/* =====================================================
+   ESTADO
+===================================================== */
+
+.estado {
+
+    color: #777;
+
+    font-size: 12px;
+
+    margin-top: 12px;
+
+    text-align: center;
+
+}
+
+
+/* =====================================================
    MOVIL
-========================= */
+===================================================== */
+
+@media(max-width:900px) {
+
+    body {
+
+        padding-right: 0;
+
+        padding-bottom: 170px;
+
+    }
+
+
+    #reproductor {
+
+        top: auto;
+
+        bottom: 0;
+
+        left: 0;
+
+        right: 0;
+
+        width: 100%;
+
+        height: auto;
+
+        border-left: none;
+
+        border-top: 1px solid #333;
+
+        padding: 12px 15px;
+
+    }
+
+
+    .cover {
+
+        display: none;
+
+    }
+
+
+    #infoCancion {
+
+        margin-bottom: 8px;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOVIL PEQUEÑO
+===================================================== */
 
 @media(max-width:600px) {
 
     header h1 {
+
         font-size: 32px;
+
     }
+
 
     .generos {
+
         grid-template-columns: 1fr 1fr;
+
     }
 
+
     .genero {
+
         padding: 25px 10px;
+
     }
 
 }
@@ -289,6 +529,7 @@ header p {
 </style>
 
 </head>
+
 
 <body>
 
@@ -303,13 +544,19 @@ header p {
 
     <p>Tu biblioteca de música</p>
 
+
     <div class="search">
 
         <input
+
             type="text"
+
             id="buscador"
+
             placeholder="🔎 Buscar canción o artista..."
+
             autocomplete="off"
+
         >
 
     </div>
@@ -317,15 +564,23 @@ header p {
 </header>
 
 
+
 <!-- =====================================================
-     INICIO
+     MENU PRINCIPAL
 ===================================================== -->
 
-<section id="inicio" class="vista activa">
+<section
+    id="inicio"
+    class="vista activa"
+>
 
     <div class="generos">
 
-        <div class="genero" onclick="abrirGenero('POP')">
+
+        <div
+            class="genero"
+            onclick="abrirGenero('POP')"
+        >
 
             <div class="icono">🎤</div>
 
@@ -336,7 +591,11 @@ header p {
         </div>
 
 
-        <div class="genero" onclick="abrirGenero('ROCK')">
+
+        <div
+            class="genero"
+            onclick="abrirGenero('ROCK')"
+        >
 
             <div class="icono">🎸</div>
 
@@ -347,7 +606,11 @@ header p {
         </div>
 
 
-        <div class="genero" onclick="abrirGenero('CUMBIA')">
+
+        <div
+            class="genero"
+            onclick="abrirGenero('CUMBIA')"
+        >
 
             <div class="icono">💃</div>
 
@@ -358,7 +621,11 @@ header p {
         </div>
 
 
-        <div class="genero" onclick="abrirGenero('REGGAETON')">
+
+        <div
+            class="genero"
+            onclick="abrirGenero('REGGAETON')"
+        >
 
             <div class="icono">🔥</div>
 
@@ -368,175 +635,309 @@ header p {
 
         </div>
 
+
     </div>
 
 </section>
+
 
 
 <!-- =====================================================
      BIBLIOTECA
 ===================================================== -->
 
-<section id="biblioteca" class="vista">
+<section
+    id="biblioteca"
+    class="vista"
+>
 
     <div class="contenido">
 
-        <button class="volver" onclick="volverInicio()">
+
+        <button
+            class="volver"
+            onclick="volverInicio()"
+        >
+
             ← Volver
+
         </button>
+
 
         <h2 id="tituloGenero"></h2>
 
-        <div id="listaCanciones" class="lista"></div>
+
+        <div
+            id="listaCanciones"
+            class="lista"
+        ></div>
+
 
     </div>
 
 </section>
 
 
+
 <!-- =====================================================
-     BUSQUEDA
+     RESULTADOS DE BUSQUEDA
 ===================================================== -->
 
-<section id="busqueda" class="vista">
+<section
+    id="busqueda"
+    class="vista"
+>
 
     <div class="contenido">
 
-        <button class="volver" onclick="volverInicio()">
+
+        <button
+            class="volver"
+            onclick="volverInicio()"
+        >
+
             ← Volver
+
         </button>
+
 
         <h2>🔎 Resultados de búsqueda</h2>
 
-        <div id="listaBusqueda" class="lista"></div>
+
+        <div
+            id="listaBusqueda"
+            class="lista"
+        ></div>
+
 
     </div>
 
 </section>
 
 
+
 <!-- =====================================================
+     =====================================================
      REPRODUCTOR PERMANENTE
      
-     IMPORTANTE:
-     Este reproductor NO está dentro de ninguna vista.
-     Por eso NO desaparece ni se reinicia.
+     ESTE ELEMENTO NUNCA SE ELIMINA
+     AL CAMBIAR DE MENU.
+     =====================================================
 ===================================================== -->
 
-<div id="reproductor">
+<aside id="reproductor">
 
-    <div id="infoCancion">
 
-        🎵 Ninguna canción seleccionada
+    <div class="cover">
+
+        🎵
 
     </div>
 
-    <audio id="audio" controls></audio>
 
-</div>
+    <div id="infoCancion">
+
+        <span class="nombre">
+
+            Ninguna canción seleccionada
+
+        </span>
+
+
+        <span class="artistaActual">
+
+            Selecciona una canción
+
+        </span>
+
+    </div>
+
+
+    <audio
+        id="audio"
+        controls
+    ></audio>
+
+
+    <div class="estado">
+
+        HYmusic Peru2026
+
+    </div>
+
+
+</aside>
+
 
 
 <script>
 
 
 /* =====================================================
-   CANCIONES
+   LISTA DE CANCIONES
 ===================================================== */
 
 const canciones = [
 
-    /* CUMBIA */
+    /* ================= CUMBIA ================= */
 
     "APOSTEMOS-Grupo5(CUMBIA).mp3",
+
     "Amigo-Grupo5(CUMBIA).mp3",
+
     "AsiSeGoza-Grupo5(CUMBIA).mp3",
+
     "DesdeQueTeVi-CorazonSerrano(CUMBIA).mp3",
+
     "ElRitmoDeMiCorazon-Grupo5(CUMBIA).mp3",
+
     "EseAmargoAmor-CHACALON(CUMBIA).mp3",
+
     "LaCulebritica-Grupo5(CUMBIA).mp3",
+
     "LlorarLorar-Grupo5(CUMBIA).mp3",
+
     "MariTeresa-CHACALON(CUMBIA).mp3",
+
     "MiDolor-CHACALON(CUMBIA).mp3",
+
     "MotoryMotivo-Grupo5(CUMBIA).mp3",
+
     "NumeroEquivocado-Grupo5(Cumbia).mp3",
+
     "OtraNocheSinTiMix-Grupo5(CUMBIA).mp3",
+
     "PorEllaLaBotella-CHACALON(CUMBIA).mp3",
+
     "QuienCura-Grupo5(CUMBIA).mp3",
+
     "QuieroOlvidarte-Grupo5(CUMBIA).mp3",
+
     "TeVas-Grupo5(CUMBIA).mp3",
+
     "VenMiAmor-CHACALON(CUMBIA).mp3",
 
 
-    /* POP */
+    /* ================= POP ================= */
 
     "Bad-MichaelJackson(POP).mp3",
+
     "BeatIt-MichaelJackson(POP).mp3",
+
     "BillieJean-MichaelJackson(POP).mp3",
+
     "BloodOnTheDanceFloor-MichaelJackson(POP).mp3",
+
     "CarelesWisper-GeorgeMichael(POP).mp3",
+
     "Dangerous-MichaelJackson(POP).mp3",
+
     "DontStopTilYouGetEnough-MichaelJackson(POP).mp3",
+
     "LEAVEMEALONE-MichaelJackson(POP).mp3",
+
     "RememberTheTime-MichaelJackson(POP).mp3",
+
     "SmoothCriminal-MichaelJackson(POP).mp3",
+
     "TheDontCareAboutUs-MichaelJackson(POP).mp3",
+
     "TheWayYouMakeMeFeel-MichaelJackson(POP).mp3",
+
     "Triller-MichaelJackson(POP).mp3",
+
     "WannaBeStartinSomethin-MichaelJackson(POP).mp3",
 
 
-    /* ROCK */
+    /* ================= ROCK ================= */
 
     "BohemianRapshody-Queen(ROCK).mp3",
+
     "DontStopMeNow-Queen(ROCK).mp3",
+
     "EnterSandman-Metalica(ROCK).mp3",
+
     "IWasMadeForLovinYou-Kiss(ROCK).mp3",
+
     "LoveOfMyLife-Queen(ROCK).mp3",
+
     "LoveWitchMyCar-Queen(ROCK).mp3",
+
     "PsychoCircus-Kiss(ROCK).mp3",
+
     "SweetChildOMine-GunsNRoses(ROCK).mp3",
+
     "WeWillRockYou-Queen(ROCK).mp3",
+
     "WelcomeToTheJungle-GunsNRoses(ROCK).mp3",
 
 
-    /* REGGAETON */
+    /* ================= REGGAETON ================= */
 
     "Abusadora-WisinyYandel(REGGAETON).mp3",
+
     "Ayer-ANUEL(REGGAETON).mp3",
+
     "BaileInolvidable-BADBUNNY(REGGAETON).mp3",
+
     "Bellaqueo-Ozuna(REGGAETON).mp3",
+
     "CafeConRon-BADBUNNY(REGGAETON).mp3",
+
     "Efecto-BADBUNNY(REGGAETON).mp3",
+
     "Golie-NickyJam(REGGAETON).mp3",
+
     "GuayaGuaya-DonOmar(REGGAETON).mp3",
+
     "HolaRemix-Dalex(REGGAETON).mp3",
+
     "KetuTecre-BADBUNNY(REGGAETON).mp3",
+
     "LaFoto-NickyJam(REGGAETON).mp3",
+
     "LaOcasion-ANUEL(REGGAETON).mp3",
+
     "LaUltimaVez-ANUEL(REGGAETON).mp3",
+
     "MeEstasTentando-WisinyYandel(REGGAETON).mp3",
+
     "MeFuiDeVacaciones-BADBUNNY(REGGAETON).mp3",
+
     "MePortoBonito-BADBUNNY(REGGAETON).mp3",
+
     "MoscowMule-BADBUNNY(REGGAETON).mp3",
+
     "NoQuiereEnamorarse-Ozuna(REGGAETON).mp3",
+
     "PiensasEnMi-NickyJam(REGGAETON).mp3",
+
     "SexyMovimiento-WisinyYandel(REGGAETON).mp3",
+
     "SiNoSupisteQuererme-Ozuna(REGGAETON).mp3",
+
     "SoyGuapo-FaraonLoveShady(REGGAETON).mp3",
+
     "TuNoLoAmas-ANUEL(REGGAETON).mp3",
+
     "Turista-BADBUNNY(REGGAETON).mp3",
+
     "UnaAventura-Ozuna(REGGAETON).mp3",
+
     "Weltita-BADBUNNY(REGGAETON).mp3",
+
     "YaNoTeEspero-Ozuna(REGGAETON).mp3"
 
 ];
 
 
+
 /* =====================================================
-   ESTADO DEL REPRODUCTOR
+   CANCION ACTUAL
 ===================================================== */
 
 let cancionActual = null;
+
 
 
 /* =====================================================
@@ -545,7 +946,8 @@ let cancionActual = null;
 
 function obtenerGenero(archivo) {
 
-    const resultado = archivo.match(/\((.*?)\)/);
+    const resultado =
+        archivo.match(/\((.*?)\)/);
 
     if (resultado) {
 
@@ -554,49 +956,80 @@ function obtenerGenero(archivo) {
     }
 
     return "OTROS";
+
 }
 
 
+
 /* =====================================================
-   OBTENER NOMBRE Y ARTISTA
+   OBTENER DATOS
 ===================================================== */
 
 function obtenerDatos(archivo) {
 
-    let limpio = archivo.replace(".mp3", "");
+    let limpio =
+        archivo.replace(".mp3", "");
 
-    let genero = obtenerGenero(archivo);
 
-    limpio = limpio.replace(/\(.*?\)/, "");
+    const genero =
+        obtenerGenero(archivo);
 
-    let partes = limpio.split("-");
 
-    let titulo = partes[0] || limpio;
+    limpio =
+        limpio.replace(/\(.*?\)/, "");
 
-    let artista = partes.slice(1).join("-") || "Artista desconocido";
+
+    const partes =
+        limpio.split("-");
+
+
+    const titulo =
+        partes[0] || limpio;
+
+
+    const artista =
+        partes.slice(1).join("-")
+        || "Artista desconocido";
+
 
     return {
-        titulo: formatearTexto(titulo),
-        artista: formatearTexto(artista),
-        genero: genero
+
+        titulo:
+            formatearTexto(titulo),
+
+        artista:
+            formatearTexto(artista),
+
+        genero:
+            genero
+
     };
 
 }
 
 
+
 /* =====================================================
-   FORMATEAR NOMBRES
+   FORMATEAR TEXTO
 ===================================================== */
 
 function formatearTexto(texto) {
 
     return texto
-        .replace(/([a-z])([A-Z])/g, "$1 $2")
+
+        .replace(
+            /([a-z])([A-Z])/g,
+            "$1 $2"
+        )
+
         .replace(/_/g, " ")
+
         .replace(/-/g, " ")
+
         .trim();
 
 }
+
 
 
 /* =====================================================
@@ -605,23 +1038,35 @@ function formatearTexto(texto) {
 
 function abrirGenero(genero) {
 
-    document.getElementById("inicio")
+
+    document
+        .getElementById("inicio")
         .classList.remove("activa");
 
-    document.getElementById("busqueda")
+
+    document
+        .getElementById("busqueda")
         .classList.remove("activa");
 
-    document.getElementById("biblioteca")
+
+    document
+        .getElementById("biblioteca")
         .classList.add("activa");
 
 
-    document.getElementById("tituloGenero").textContent =
-        obtenerIcono(genero) + " " + genero;
+    document
+        .getElementById("tituloGenero")
+        .textContent =
+            obtenerIcono(genero)
+            + " "
+            + genero;
 
 
-    const resultados = canciones.filter(cancion =>
-        obtenerGenero(cancion) === genero
-    );
+    const resultados =
+        canciones.filter(
+            cancion =>
+            obtenerGenero(cancion) === genero
+        );
 
 
     mostrarCanciones(
@@ -632,33 +1077,44 @@ function abrirGenero(genero) {
 }
 
 
+
 /* =====================================================
-   ICONOS
+   ICONO GENERO
 ===================================================== */
 
 function obtenerIcono(genero) {
 
-    if (genero === "POP") return "🎤";
+    if (genero === "POP")
+        return "🎤";
 
-    if (genero === "ROCK") return "🎸";
+    if (genero === "ROCK")
+        return "🎸";
 
-    if (genero === "CUMBIA") return "💃";
+    if (genero === "CUMBIA")
+        return "💃";
 
-    if (genero === "REGGAETON") return "🔥";
+    if (genero === "REGGAETON")
+        return "🔥";
 
     return "🎵";
 
 }
 
 
+
 /* =====================================================
    MOSTRAR CANCIONES
 ===================================================== */
 
-function mostrarCanciones(lista, contenedor) {
+function mostrarCanciones(
+    lista,
+    contenedor
+) {
+
 
     const elemento =
         document.getElementById(contenedor);
+
 
     elemento.innerHTML = "";
 
@@ -666,31 +1122,42 @@ function mostrarCanciones(lista, contenedor) {
     if (lista.length === 0) {
 
         elemento.innerHTML =
-            '<div class="vacio">No se encontraron canciones.</div>';
+            '<div class="vacio">' +
+            'No se encontraron canciones.' +
+            '</div>';
 
         return;
+
     }
 
 
     lista.forEach(archivo => {
 
-        const datos = obtenerDatos(archivo);
+
+        const datos =
+            obtenerDatos(archivo);
 
 
         const div =
             document.createElement("div");
 
-        div.className = "cancion";
+
+        div.className =
+            "cancion";
 
 
         /*
-         * Si esta canción está sonando,
-         * mantenerla marcada aunque cambiemos de vista.
+         * Mantener marcada
+         * la canción que está sonando.
          */
 
-        if (cancionActual === archivo) {
+        if (
+            cancionActual === archivo
+        ) {
 
-            div.classList.add("activa");
+            div.classList.add(
+                "activa"
+            );
 
         }
 
@@ -698,15 +1165,23 @@ function mostrarCanciones(lista, contenedor) {
         div.innerHTML = `
 
             <div class="titulo">
+
                 🎵 ${datos.titulo}
+
             </div>
+
 
             <div class="artista">
+
                 ${datos.artista}
+
             </div>
 
+
             <span class="genero-tag">
+
                 ${datos.genero}
+
             </span>
 
         `;
@@ -716,18 +1191,21 @@ function mostrarCanciones(lista, contenedor) {
 
             reproducir(archivo);
 
-            /*
-             * Actualizar visualmente
-             * la canción seleccionada.
-             */
 
             document
-                .querySelectorAll(".cancion")
+                .querySelectorAll(
+                    ".cancion"
+                )
                 .forEach(x =>
-                    x.classList.remove("activa")
+                    x.classList.remove(
+                        "activa"
+                    )
                 );
 
-            div.classList.add("activa");
+
+            div.classList.add(
+                "activa"
+            );
 
         };
 
@@ -739,23 +1217,28 @@ function mostrarCanciones(lista, contenedor) {
 }
 
 
+
 /* =====================================================
    REPRODUCIR
 ===================================================== */
 
 function reproducir(archivo) {
 
+
     const audio =
         document.getElementById("audio");
 
 
     /*
-     * Si seleccionamos la misma canción
-     * que ya está sonando,
-     * NO la reiniciamos.
+     * SI ES LA MISMA CANCION:
+     *
+     * NO SE REINICIA.
      */
 
-    if (cancionActual === archivo) {
+    if (
+        cancionActual === archivo
+    ) {
+
 
         if (audio.paused) {
 
@@ -763,16 +1246,19 @@ function reproducir(archivo) {
 
         }
 
+
         return;
 
     }
 
 
     /*
-     * Solo aquí cambiamos la canción.
+     * SOLO CUANDO SE SELECCIONA
+     * OTRA CANCION:
      */
 
-    cancionActual = archivo;
+    cancionActual =
+        archivo;
 
 
     audio.src =
@@ -782,70 +1268,113 @@ function reproducir(archivo) {
     audio.play();
 
 
-    actualizarInfo(archivo);
+    actualizarInfo(
+        archivo
+    );
 
 }
 
 
+
 /* =====================================================
-   INFORMACION DEL REPRODUCTOR
+   ACTUALIZAR INFORMACION
 ===================================================== */
 
-function actualizarInfo(archivo) {
+function actualizarInfo(
+    archivo
+) {
+
 
     const datos =
         obtenerDatos(archivo);
 
 
-    document.getElementById("infoCancion").innerHTML = `
+    document
+        .getElementById(
+            "infoCancion"
+        )
+        .innerHTML = `
 
-        <span class="nombre">
-            🎵 ${datos.titulo}
-        </span>
+            <div class="cover">
 
-        <span class="artistaActual">
-            — ${datos.artista}
-        </span>
+                🎵
 
-    `;
+            </div>
+
+
+            <span class="nombre">
+
+                ${datos.titulo}
+
+            </span>
+
+
+            <span class="artistaActual">
+
+                ${datos.artista}
+
+            </span>
+
+        `;
 
 }
 
 
+
 /* =====================================================
-   VOLVER AL INICIO
+   VOLVER AL MENU
 ===================================================== */
 
 function volverInicio() {
 
+
     /*
      * MUY IMPORTANTE:
      *
-     * NO hacemos:
+     * NO TOCAR EL AUDIO.
+     *
+     * NO:
      *
      * audio.pause()
+     *
      * audio.src = ""
+     *
      * audio.load()
      *
-     * Por eso la música continúa.
+     *
+     * Por eso la canción
+     * continúa reproduciéndose.
      */
 
 
     document
-        .getElementById("biblioteca")
-        .classList.remove("activa");
+        .getElementById(
+            "biblioteca"
+        )
+        .classList.remove(
+            "activa"
+        );
 
 
     document
-        .getElementById("busqueda")
-        .classList.remove("activa");
+        .getElementById(
+            "busqueda"
+        )
+        .classList.remove(
+            "activa"
+        );
 
 
     document
-        .getElementById("inicio")
-        .classList.add("activa");
+        .getElementById(
+            "inicio"
+        )
+        .classList.add(
+            "activa"
+        );
 
 }
+
 
 
 /* =====================================================
@@ -853,95 +1382,179 @@ function volverInicio() {
 ===================================================== */
 
 const buscador =
-    document.getElementById("buscador");
-
-
-buscador.addEventListener("input", function() {
-
-    const texto = buscador.value
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/\s+/g, "");
-
-
-    /*
-     * Si el buscador está vacío,
-     * volver al inicio.
-     */
-
-    if (texto === "") {
-
-        document
-            .getElementById("busqueda")
-            .classList.remove("activa");
-
-        document
-            .getElementById("biblioteca")
-            .classList.remove("activa");
-
-        document
-            .getElementById("inicio")
-            .classList.add("activa");
-
-        return;
-
-    }
-
-
-    document
-        .getElementById("inicio")
-        .classList.remove("activa");
-
-
-    document
-        .getElementById("biblioteca")
-        .classList.remove("activa");
-
-
-    document
-        .getElementById("busqueda")
-        .classList.add("activa");
-
-
-    const resultados =
-        canciones.filter(archivo => {
-
-            const datos =
-                obtenerDatos(archivo);
-
-
-            const titulo =
-                datos.titulo
-                    .toLowerCase()
-                    .normalize("NFD")
-                    .replace(/[\u0300-\u036f]/g, "")
-                    .replace(/\s+/g, "");
-
-
-            const artista =
-                datos.artista
-                    .toLowerCase()
-                    .normalize("NFD")
-                    .replace(/[\u0300-\u036f]/g, "")
-                    .replace(/\s+/g, "");
-
-
-            return titulo.includes(texto) ||
-                   artista.includes(texto);
-
-        });
-
-
-    mostrarCanciones(
-        resultados,
-        "listaBusqueda"
+    document.getElementById(
+        "buscador"
     );
 
-});
 
+buscador.addEventListener(
+    "input",
+    function() {
+
+
+        const texto =
+            buscador.value
+
+                .toLowerCase()
+
+                .normalize("NFD")
+
+                .replace(
+                    /[\u0300-\u036f]/g,
+                    ""
+                )
+
+                .replace(
+                    /\s+/g,
+                    ""
+                );
+
+
+        /*
+         * BUSCADOR VACIO
+         */
+
+        if (texto === "") {
+
+
+            document
+                .getElementById(
+                    "busqueda"
+                )
+                .classList.remove(
+                    "activa"
+                );
+
+
+            document
+                .getElementById(
+                    "biblioteca"
+                )
+                .classList.remove(
+                    "activa"
+                );
+
+
+            document
+                .getElementById(
+                    "inicio"
+                )
+                .classList.add(
+                    "activa"
+                );
+
+
+            return;
+
+        }
+
+
+        /*
+         * MOSTRAR RESULTADOS
+         */
+
+        document
+            .getElementById(
+                "inicio"
+            )
+            .classList.remove(
+                "activa"
+            );
+
+
+        document
+            .getElementById(
+                "biblioteca"
+            )
+            .classList.remove(
+                "activa"
+            );
+
+
+        document
+            .getElementById(
+                "busqueda"
+            )
+            .classList.add(
+                "activa"
+            );
+
+
+        const resultados =
+            canciones.filter(
+                archivo => {
+
+
+                    const datos =
+                        obtenerDatos(
+                            archivo
+                        );
+
+
+                    const titulo =
+                        datos.titulo
+
+                            .toLowerCase()
+
+                            .normalize("NFD")
+
+                            .replace(
+                                /[\u0300-\u036f]/g,
+                                ""
+                            )
+
+                            .replace(
+                                /\s+/g,
+                                ""
+                            );
+
+
+                    const artista =
+                        datos.artista
+
+                            .toLowerCase()
+
+                            .normalize("NFD")
+
+                            .replace(
+                                /[\u0300-\u036f]/g,
+                                ""
+                            )
+
+                            .replace(
+                                /\s+/g,
+                                ""
+                            );
+
+
+                    return (
+
+                        titulo.includes(
+                            texto
+                        )
+
+                        ||
+
+                        artista.includes(
+                            texto
+                        )
+
+                    );
+
+                }
+            );
+
+
+        mostrarCanciones(
+            resultados,
+            "listaBusqueda"
+        );
+
+    }
+);
 
 </script>
 
 </body>
+
 </html>
